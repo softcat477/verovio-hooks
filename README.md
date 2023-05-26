@@ -7,35 +7,54 @@
     ```
     git clone https://github.com/softcat477/verovio-hooks.git
     ```
-3. Move `./verovio-hooks/.clang-format` to `.`
+3. Move `verovio-hooks/check.sh` and `cp verovio-hooks/Makefile` to `./`. Move `verovio-hooks/hooks/pre-commit` to `.git/hooks`
     ```
-    cp verovio-hooks/.clang-format .
+    cp verovio-hooks/check.sh . && cp verovio-hooks/Makefile . && cp verovio-hooks/hooks/pre-commit .git/hooks/
     ```
-4. Move `./verovio-hooks/check.sh` to `.`
+4. Make `pre-commit` be an executable.
     ```
-    cp verovio-hooks/check.sh .
+    chmod +x .git/hooks/pre-commit
     ```
-5. Move `./verovio-hooks/check.sh/Makefile` to `.`
+7. Add `check.sh` to `.git/info/exclude`
     ```
-    cp verovio-hooks/Makefile .
+    echo check.sh >> .git/info/exclude
     ```
-6. Move `verovio-hooks/hooks/pre-commit` to `.git/hooks/`
+8. Add `verovio-hooks/` to `.git/info/exclude`
     ```
-    cp verovio-hooks/hooks/pre-commit .git/hooks/
+    echo verovio-hooks/ >> .git/info/exclude
     ```
-7. Add `check.sh` to `.gitignore`
+9. Youre directory tree should look like this:
     ```
-    echo check.sh >> .gitignore
+    .
+    ├── CHANGELOG.md
+    ├── COPYING
+    ├── COPYING.LESSER
+    ├── MANIFEST.in
+    ├── README.md
+    ├── Verovio.podspec
+    ├── Verovio.xcodeproj/
+    ├── appveyor.yml
+    ├── bindings/
+    ├── cmake/
+    ├── codemeta.json
+    ├── data/
+    ├── doc/
+    ├── emscripten/
+    ├── fonts/
+    ├── include/
+    ├── libmei/
+    ├── setup.py
+    ├── src/
+    ├── tools/
+    ├── Makefile
+    ├── check.sh
+    └── verovio-hooks
+        ├── Makefile
+        ├── README.md
+        ├── check.sh
+        └── hooks
+            └── pre-commit
     ```
-8. Add `Makefile` to `.gitignore`
-    ```
-    echo Makefile >> .gitignore
-    ```
-8. Add `verovio-hooks/` to `.gitignore`
-    ```
-    echo verovio-hooks/ >> .gitignore
-    ```
-7. Youre directory tree should look like this:
 
 ## Usage
 ### Reformat your `src` manually
