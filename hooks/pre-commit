@@ -1,0 +1,24 @@
+#!/bin/sh
+
+# check if check.sh exists
+if [[ ! -e "./check.sh" ]]; then
+    echo "check.sh is missing. Abort commit. If you want to skip pre-commit, remove .git/hooks/pre-ommit." >&2
+    exit 1
+fi
+
+# check if check.sh exists
+if [[ ! -x "./check.sh" ]]; then
+    echo "check.sh is not executable. Abort commit. Run chmod +x ./check.sh to fix this." >&2
+    exit 1
+fi
+
+# Get staged file
+staged_file=$(git diff --cached --name-only --diff-filter=ACM)
+
+# Run check.sh on staged files
+echo $(pwd)
+./check.sh 15 "$staged_file" llvm "(hum|crc|midi|json|pugi|utf8|win32|zip)" || exit $?
+
+# Add formatted file back to staging
+staged_file=$(echo $staged_file)
+$(git add $staged_file)
