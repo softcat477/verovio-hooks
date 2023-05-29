@@ -6,9 +6,17 @@ if [[ ! -e "./check.sh" ]]; then
     exit 1
 fi
 
-# check if check.sh exists
+# check if check.sh is executable
 if [[ ! -x "./check.sh" ]]; then
     echo "check.sh is not executable. Abort commit. Run chmod +x ./check.sh to fix this." >&2
+    exit 1
+fi
+
+# Check if docker daemon is running
+docker info
+retVal=$?
+if [[ $retVal -ne 0 ]]; then
+    echo "You need to start docker desktop."
     exit 1
 fi
 
