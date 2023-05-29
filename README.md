@@ -3,7 +3,7 @@
 ## Setup steps
 1. Install [Docker](https://www.docker.com/)
 1. Go to verovio.
-2. Cone this repo
+2. Clone this repo
     ```
     git clone https://github.com/softcat477/verovio-hooks.git
     ```
@@ -23,7 +23,7 @@
     ```
     echo verovio-hooks/ >> .git/info/exclude
     ```
-9. Youre directory tree should look like this:
+9. Your directory tree should look like this:
     ```
     .
     ├── CHANGELOG.md
